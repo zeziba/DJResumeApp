@@ -19,10 +19,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from upload.views import image_upload
-from index.views import index
+from index.views import index, HomePageView, AboutPageView
 
 urlpatterns = [
-    path('', index, name="index"),
+    path('', HomePageView.as_view(), name="home"),
+    path('about/', AboutPageView.as_view(), name="about"),
     path("image/", image_upload, name="upload"),
     path("admin/", admin.site.urls),
 ]
