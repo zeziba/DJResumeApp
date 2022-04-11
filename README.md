@@ -18,3 +18,10 @@ docker-compose -f docker-compose.prod.yml exec web python3 manage.py migrate --n
 
 # Copy static files to the proper locations
 docker-compose -f docker-compose.prod.yml exec web python3 manage.py collectstatic --no-input --clear
+
+# Setup super user
+docker-compose exec web python3 manage.py migrate
+docker-compose exec web python3 manage.py createsuperuser
+
+# Run the tests
+docker-compose exec web python3 manage.py test
