@@ -25,3 +25,7 @@ docker-compose exec web python3 manage.py createsuperuser
 
 # Run the tests
 docker-compose exec web python3 manage.py test
+
+# Add database entries with migrattions
+docker-compose exec web python3 manage.py makemigrations index
+docker-compose exec web python3 manage.py migrate index
