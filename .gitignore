@@ -3,6 +3,10 @@
 .env.prod
 .env.prod.db
 
+# Ignore prodfiles and static files from collectstatic
+app/staticfiles/
+app/mediafiles/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

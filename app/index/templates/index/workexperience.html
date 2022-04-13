@@ -1,0 +1,12 @@
+<!-- templates/index/workexperience.html-->
+{% include "base.html" %}
+{% for work in work_experience %}
+<div class="mw6 center pa3 sans-serif">
+    <header class="mb4">Work Experience: {{ work.company_name }}</header>
+    <p class="b mb-2">Title: {{ work.title }}</p>
+    <p class="b mb-2">Description: {{ work.description }}</p>
+    <p class="b mb-2">Start Date: {{ work.start_date }}</p>
+    <p class="b mb-2">End Date: {{ work.end_date }}</p>
+    <br/>
+</div>
+{% endfor %}
