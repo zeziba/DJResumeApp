@@ -1,21 +1,23 @@
-from ast import Dict
-from ctypes.wintypes import HINSTANCE
-import imp
-from multiprocessing import context
 from typing import Any
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.db import models
-from index.models import WorkExperience, Skills
+from index.models import WorkExperience, Skills, PersonalInfo
 
 
 class HomePageView(TemplateView):
-    template_name = 'home.html'
+    template_name = 'index/resume_home.html'
+
+    def get_context_data(self, **kwargs: Any):
+        context = super(HomePageView, self).get_context_data(**kwargs)
+        context['personal_info'] = PersonalInfo.objects.get(id=1)
+
+        return context
 
 
 class AboutPageView(TemplateView):
-    template_name = 'about.html'
+    template_name = 'index/about.html'
 
 
 class WorkHistoryView(TemplateView):

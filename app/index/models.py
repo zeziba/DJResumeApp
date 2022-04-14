@@ -12,3 +12,11 @@ class Skills(models.Model):
     skill_name = models.CharField(max_length=40)
     description = models.TextField(max_length=120)
     example = models.URLField()
+
+class PersonalInfo(models.Model):
+    first_name = models.CharField(max_length=40)
+    middle_name = models.CharField(max_length=40)
+    last_name = models.CharField(max_length=40)
+    contact_email = models.EmailField()
+    contact_phone = models.CharField(max_length=16)
+    self_photo = models.URLField()

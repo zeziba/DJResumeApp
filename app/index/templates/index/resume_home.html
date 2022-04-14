@@ -1,0 +1,11 @@
+<!-- templates/index/resume_home.html -->
+{% extends "home.html" %}
+
+{% block content %}
+{{ personal_info.first_name }}
+{{ personal_info.middle_name }}
+{{ personal_info.last_name }}
+{{ personal_info.contact_email }}
+{{ personal_info.contact_phone }}
+{{ personal_info.self_photo }}
+{% endblock content %}
