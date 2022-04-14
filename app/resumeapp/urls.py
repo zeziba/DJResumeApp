@@ -21,7 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from upload.views import image_upload
-from index.views import index, HomePageView, AboutPageView, work_experience_detail, WorkHistoryView
+from index.views import index, HomePageView, AboutPageView, work_experience_detail, WorkHistoryView, SkillView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name="home"),
@@ -30,6 +30,8 @@ urlpatterns = [
     path("admin/", admin.site.urls, name="admin"),
     path("work_experience/", WorkHistoryView.as_view(), name="work_experience"),
     path("work_experience/", dj_include("index.urls"), name="work_experience"),
+    path("skills/", SkillView.as_view(), name="skills"),
+    path("skills/", dj_include("index.urls"), name="skills"),
 ]
 
 if bool(settings.DEBUG):
