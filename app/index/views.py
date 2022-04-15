@@ -1,21 +1,35 @@
-from ast import Dict
-from ctypes.wintypes import HINSTANCE
-import imp
-from multiprocessing import context
 from typing import Any
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.db import models
-from index.models import WorkExperience, Skills
+from index.models import WorkExperience, Skills, PersonalInfo, FiveWs, FactsForFiveWs
 
 
 class HomePageView(TemplateView):
-    template_name = 'home.html'
+    template_name = 'index/resume_home.html'
+
+    def get_context_data(self, **kwargs: Any):
+        context = super(HomePageView, self).get_context_data(**kwargs)
+        try:
+            context['personal_info'] = PersonalInfo.objects.get(id=1)
+        except PersonalInfo.DoesNotExist:
+            context['personal_info'] = PersonalInfo()
+
+        return context
 
 
 class AboutPageView(TemplateView):
-    template_name = 'about.html'
+    template_name = 'index/about.html'
+
+    def get_context_data(self, *args, **kwargs: Any):
+        context = super(AboutPageView, self).get_context_data(*args, **kwargs)
+        try:
+            context['five_ws'] = FiveWs.objects.get(id=1)
+        except FiveWs.DoesNotExist:
+            context['personal_info'] = FiveWs()
+
+        return context
 
 
 class WorkHistoryView(TemplateView):
@@ -35,6 +49,17 @@ class SkillView(TemplateView):
     def get_context_data(self, *args, **kwargs: Any):
         context = super(SkillView, self).get_context_data(*args, **kwargs)
         context['skills'] = Skills.objects.all()
+
+        return context
+
+
+class FactsFiveWsView(TemplateView):
+    template_name = 'index/skills.html'
+
+    def get_context_data(self, *args, **kwargs: Any):
+        context = super(FactsFiveWsView, self).get_context_data(
+            *args, **kwargs)
+        context['facts_5_ws'] = FactsForFiveWs.objects.all()
 
         return context
 

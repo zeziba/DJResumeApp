@@ -1,32 +1,35 @@
 <!-- templates/base.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- Bootstrap CSS-->
-    {% load django_bootstrap5 %}
-
-    {# Load CSS and JavaScript #}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-
-    {# Display django.contrib.messages as Bootstrap alerts #}
-    {% bootstrap_messages %}
-
-    <title>{% block title %}Default Value{% endblock %}</title>
-    {% include "partials/navbar.html" %}
-  </head>
-  <body>
-    <header>
-        {% include "partials/header.html" %}
-    </header>
-    {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
-    {% block content %}
-    {% endblock content %}
-  </body>
-  <footer>
-      {% include "partials/footer.html" %}
-  </footer>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS-->
+        {% load django_bootstrap5 %}
+        {# Load CSS and JavaScript #}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        <title>
+            {% block title %}Default Value{% endblock %}
+        </title>
+        {% include "partials/navbar.html" %}
+    </head>
+    <body>
+        <div class="container mt-3 shadow">
+            <div class="grid">
+                <header>
+                    {% include "partials/header.html" %}
+                </header>
+                {% autoescape off %}
+                    {# Display django.contrib.messages as Bootstrap alerts #}
+                    {% bootstrap_messages %}
+                {% endautoescape %}
+                {% block content %}
+                {% endblock content %}
+                <footer>
+                    {% include "partials/footer.html" %}
+                </footer>
+            </div>
+        </div>
+    </body>
 </html>
