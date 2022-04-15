@@ -3,7 +3,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.db import models
-from index.models import WorkExperience, Skills, PersonalInfo
+from index.models import WorkExperience, Skills, PersonalInfo, FiveWs, FactsForFiveWs
 
 
 class HomePageView(TemplateView):
@@ -11,13 +11,25 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs: Any):
         context = super(HomePageView, self).get_context_data(**kwargs)
-        context['personal_info'] = PersonalInfo.objects.get(id=1)
+        try:
+            context['personal_info'] = PersonalInfo.objects.get(id=1)
+        except PersonalInfo.DoesNotExist:
+            context['personal_info'] = PersonalInfo()
 
         return context
 
 
 class AboutPageView(TemplateView):
     template_name = 'index/about.html'
+
+    def get_context_data(self, *args, **kwargs: Any):
+        context = super(AboutPageView, self).get_context_data(*args, **kwargs)
+        try:
+            context['five_ws'] = FiveWs.objects.get(id=1)
+        except FiveWs.DoesNotExist:
+            context['personal_info'] = FiveWs()
+
+        return context
 
 
 class WorkHistoryView(TemplateView):
@@ -37,6 +49,17 @@ class SkillView(TemplateView):
     def get_context_data(self, *args, **kwargs: Any):
         context = super(SkillView, self).get_context_data(*args, **kwargs)
         context['skills'] = Skills.objects.all()
+
+        return context
+
+
+class FactsFiveWsView(TemplateView):
+    template_name = 'index/skills.html'
+
+    def get_context_data(self, *args, **kwargs: Any):
+        context = super(FactsFiveWsView, self).get_context_data(
+            *args, **kwargs)
+        context['facts_5_ws'] = FactsForFiveWs.objects.all()
 
         return context
 
