@@ -1,9 +1,8 @@
-import imp
 from django import forms
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from django.conf import settings
+import os
 
 TESTING_ADMIN = "admin@example.com"
 
@@ -13,7 +12,7 @@ class ContactForm(forms.Form):
     last_name = forms.CharField(max_length=60)
     email_address = forms.EmailField(max_length=150)
     message = forms.CharField(widget=forms.Textarea, max_length=2000)
-    
+
     def send_email(self):
         subject = "Website Inquiry"
         body = {
@@ -23,11 +22,9 @@ class ContactForm(forms.Form):
             'message': self.cleaned_data['message'],
         }
         message = "\n".join(body.values())
-        
+
         try:
-            if settings.DEBUG:
-                send_mail(subject=subject, message=message, from_email=TESTING_ADMIN, recipient_list=[TESTING_ADMIN,])
-            else:
-                send_mail(subject=subject, message=message, from_email=settings.EMAIL_HOST_USER, recipient_list=[settings.EMAIL_DEST,])
+            send_mail(subject=subject, message=message,
+                      from_email=os.environ.get("EMAIL_HOST_USER", TESTING_ADMIN), recipient_list=[os.environ.get("EMAIL_DEST", TESTING_ADMIN), ])
         except BadHeaderError:
             return HttpResponse('Invalid header found')

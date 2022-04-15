@@ -2,7 +2,7 @@
 docker-compose exec web python manage.py migrate --noinput
 
 # Check on database(Sql)
-docker-compose exec db psql --username=resume_admin --dbname=resume_dev
+docker-compose exec db psql --username=resume_admin_prod --dbname=resumeapp_prod
 
 # Entry for query of database
 resume_dev# \l
@@ -29,3 +29,9 @@ docker-compose exec web python3 manage.py test
 # Add database entries with migrattions
 docker-compose exec web python3 manage.py makemigrations index
 docker-compose exec web python3 manage.py migrate index
+
+# After production build run the following commands to ensure all files and databases are setup
+docker-compose exec web python3 manage.py flush --no-input
+docker-compose exec web python3 manage.py migrate
+docker-compose exec web python3 manage.py createsuperuser
+docker-compose exec web python3 manage.py collectstatic --no-input --clear

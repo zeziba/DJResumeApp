@@ -2,7 +2,7 @@ from typing import Any
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.db import models
+from django.db import ProgrammingError, models
 from index.models import WorkExperience, Skills, PersonalInfo, FiveWs, FactsForFiveWs
 
 
@@ -13,7 +13,7 @@ class HomePageView(TemplateView):
         context = super(HomePageView, self).get_context_data(**kwargs)
         try:
             context['personal_info'] = PersonalInfo.objects.get(id=1)
-        except PersonalInfo.DoesNotExist:
+        except PersonalInfo.DoesNotExist or ProgrammingError:
             context['personal_info'] = PersonalInfo()
 
         return context
