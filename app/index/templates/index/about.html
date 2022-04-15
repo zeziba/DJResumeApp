@@ -1,9 +1,21 @@
 <!-- templates/index/about.html -->
 {% extends 'about.html' %}
 {% block content %}
-    {{ five_ws.identity }}
-    {{ five_ws.started }}
-    {{ five_ws.location }}
-    {{ five_ws.purpose }}
-    {{ five_ws.how_its_done }}
+    <div class="container mx-auto">
+        <p class="lead">
+            {{ five_ws.identity }}
+        </p>
+        <p class="lead">
+            I have been going as of {{ five_ws.started|date:"Y-m-d" }}
+        </p>
+        <p class="lead">
+            I work and live in {{ five_ws.location }}
+        </p>
+        <p class="lead">
+            {{ five_ws.purpose }}
+        </p>
+        <p class="lead">
+            {{ five_ws.how_its_done }}
+        </p>
+    </div>
 {% endblock content %}
