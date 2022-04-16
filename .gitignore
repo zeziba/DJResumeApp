@@ -3,6 +3,9 @@
 .env.prod
 .env.prod.db
 
+# Ignore tos.html as it is project specific
+*tos.html
+
 # Ignore prodfiles and static files from collectstatic
 app/staticfiles/
 app/mediafiles/

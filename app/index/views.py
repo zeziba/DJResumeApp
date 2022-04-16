@@ -64,6 +64,10 @@ class FactsFiveWsView(TemplateView):
         return context
 
 
+class TermsOfServiceView(TemplateView):
+    template_name = 'index/tos.html'
+
+
 def work_experience_detail(request, work_id) -> HttpResponse:
     try:
         work_experience = WorkExperience.objects.get(pk=work_id)
