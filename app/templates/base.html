@@ -15,7 +15,7 @@
         {% include "partials/navbar.html" %}
     </head>
     <body>
-        <div class="container mt-3 shadow">
+        <div class="d-flex flex-row mt-3 shadow">
             <div class="grid">
                 <header>
                     {% include "partials/header.html" %}
@@ -26,10 +26,10 @@
                 {% endautoescape %}
                 {% block content %}
                 {% endblock content %}
-                <footer>
-                    {% include "partials/footer.html" %}
-                </footer>
             </div>
         </div>
     </body>
+    <footer class="d-flex flex-row fixed-bottom justify-content-center">
+        {% include "partials/footer.html" %}
+    </footer>
 </html>
