@@ -7,6 +7,9 @@
 *tos.html
 *privacy.html
 
+# Ignore all generated migration files
+*_initial.py
+
 # Ignore prodfiles and static files from collectstatic
 app/staticfiles/
 app/mediafiles/
