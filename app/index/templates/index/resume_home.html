@@ -8,9 +8,11 @@
     <p class="lead">
         Contact: {{ personal_info.contact_email }}; {{ personal_info.contact_phone }}
     </p>
+    {% if personal_info.self_photo %}
     <p class="lead">
         <a href="{{ personal_info.self_photo }}" class="btn btn-outline-dark" role="button">Linkedin:
             {{ personal_info.self_photo|slice:"7:" }}</a>
     </p>
+    {% endif %}
 </div>
 {% endblock content %}
