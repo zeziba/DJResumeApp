@@ -3,12 +3,17 @@
 {% block title %}Images{% endblock title %}
 {% block content %}
 {% load static %}
-{% for image in images %}
-<div class="card">
-    <div class="card-header"><img src="{{ image.image.url }}" class="img-fluid" alt="..."
-            style="display: block; width: 200px; height: auto;"></div>
-    <div class="card-body">{{ image.image.url }}</div>
-    <div class="card-footer">Footer</div>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for image in images %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ image.image.url }}" class="img-fluid card-img-top" alt="..."
+            style="display: block; width: 200px; height: auto;">
+        <div class="card-body">
+            <h5 class="card-title">{{ image.image.url|slice:"-10:" }}</h5>
+            <p class="card-text">An image</p>
+        </div>
+        <div class="card-footer">Footer</div>
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}
 {% endblock content %}
