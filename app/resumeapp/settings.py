@@ -219,6 +219,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Bootstrap
 STATICFILES_DIRS = [
     (os.path.join('icons'), os.path.join(BASE_DIR, 'assets', 'icons-1.8.1', 'icons')),
+    (os.path.join('js'), os.path.join(BASE_DIR, 'static', 'js')),
 ]
 
 # Media files
