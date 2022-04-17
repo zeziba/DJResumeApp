@@ -35,7 +35,7 @@ class ImageUploadView(SuccessMessageMixin, FormView):
 
     def form_valid(self, form: ImagesForm) -> HttpResponse:
         form.instance.save()
-        self.success_message = f"Image Submited.{form.instance.image_url}"
+        self.success_message = f"Image Submited: {form.instance.image.url}"
         return super(ImageUploadView, self).form_valid(form)
 
 
