@@ -5,8 +5,8 @@
 {% load static %}
 {% for image in images %}
 <div class="card">
-    <div class="card-header"><img src="{% static '{{ image.image_url }}' %}" class="img-fluid" alt="..."></div>
-    <div class="card-body">Content</div>
+    <div class="card-header"><img src="{{ image.image.url }}" class="img-fluid" alt="..."></div>
+    <div class="card-body">{{ image.image.url }}</div>
     <div class="card-footer">Footer</div>
 </div>
 {% endfor %}
