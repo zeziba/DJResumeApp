@@ -1,5 +1,5 @@
-document.addEventListener("DOMContentLoaded", function() {
-    window.addEventListener('scroll', function() {
+document.addEventListener("DOMContentLoaded", function () {
+    window.addEventListener('scroll', function () {
         let navbar_height = this.document.querySelector('.navbar').offSetHeight;
         if (window.scrollY > 50) {
             this.document.getElementById('navbar-top').classList.add('fixed-top');
