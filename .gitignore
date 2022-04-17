@@ -5,6 +5,7 @@
 
 # Ignore tos.html as it is project specific
 *tos.html
+*privacy.html
 
 # Ignore prodfiles and static files from collectstatic
 app/staticfiles/
