@@ -19,14 +19,15 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from upload.views import image_upload
+from upload.views import ImagesView, ImageUploadView
 from index.views import HomePageView, AboutPageView, WorkHistoryView, SkillView, FactsFiveWsView, TermsOfServiceView, PrivacyView
 from contact.views import ContactUsView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name="home"),
     path('about/', AboutPageView.as_view(), name="about"),
-    path("image/", image_upload, name="upload"),
+    path("image/", ImageUploadView.as_view(), name="upload"),
+    path("images/", ImagesView.as_view(), name="images_display"),
     path("admin/", admin.site.urls, name="admin"),
     path("work_experience/", WorkHistoryView.as_view(), name="work_experience"),
     path("work_experience/", dj_include("index.urls"), name="work_experience"),

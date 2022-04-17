@@ -1,0 +1,13 @@
+<!-- templates/upload/images.html -->
+{% extends 'base.html' %}
+{% block title %}Images{% endblock title %}
+{% block content %}
+{% load static %}
+{% for image in images %}
+<div class="card">
+    <div class="card-header"><img src="{% static '{{ image.image_url }}' %}" class="img-fluid" alt="..."></div>
+    <div class="card-body">Content</div>
+    <div class="card-footer">Footer</div>
+</div>
+{% endfor %}
+{% endblock content %}
