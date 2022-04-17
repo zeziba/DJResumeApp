@@ -1,29 +1,29 @@
 <!-- templates/index/workexperience.html-->
 {% extends 'base.html' %}
 {% block title %}
-    Work History
+Work History
 {% endblock title %}
 {% block content %}
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Work History</th>
-                <th scrope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Start Date</th>
-                <th scope="col">End Date</th>
-            </tr>
-        </thead>
-        {% for work in work_experience %}
-            <tbody>
-                <tr>
-                    <th scope="row">{{ work.company_name }}</th>
-                    <td>{{ work.title }}</td>
-                    <td>{{ work.description }}</td>
-                    <td>{{ work.start_date }}</td>
-                    <td>{{ work.end_date }}</td>
-                </tr>
-            </tbody>
-        {% endfor %}
-    </table>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Work History</th>
+            <th scrope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+        </tr>
+    </thead>
+    {% for work in work_experience %}
+    <tbody>
+        <tr>
+            <th scope="row">{{ work.company_name }}</th>
+            <td>{{ work.title }}</td>
+            <td>{{ work.description }}</td>
+            <td>{{ work.start_date }}</td>
+            <td>{{ work.end_date }}</td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
 {% endblock content %}

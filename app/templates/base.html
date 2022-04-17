@@ -1,41 +1,46 @@
 <!-- templates/base.html -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Bootstrap CSS-->
-        {% load django_bootstrap5 %}
-        {# Load CSS and JavaScript #}
-        {% bootstrap_css %}
-        {% bootstrap_javascript %}
-        {% load static %}
-        <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
-        <title>
-            {% block title %}Default Value{% endblock title %}
-        </title>
-    </head>
-    <body>
-        <header class="shadow">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS-->
+    {% load django_bootstrap5 %}
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load static %}
+    <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
+    <title>
+        {% block title %}
+        Default Value
+        {% endblock title %}
+    </title>
+</head>
+
+<body>
+    <header class="shadow">
         {% include "partials/navbar.html" %}
-        </header>
-        <div class="container">
-            <div id="header">{% include "partials/header.html" %}</div>
-            <div id="body">
-                <div id="django_messages">
-                    {% autoescape off %}
-                        {# Display django.contrib.messages as Bootstrap alerts #}
-                        {% bootstrap_messages %}
-                    {% endautoescape %}
-                </div>
-                <div id="content" class="mt-3 shadow">
-                    {% block content %}
-                    {% endblock content %}
-                </div>
+    </header>
+    <div class="container">
+        <div id="header">{% include "partials/header.html" %}</div>
+        <div id="body">
+            <div id="django_messages">
+                {% autoescape off %}
+                {# Display django.contrib.messages as Bootstrap alerts #}
+                {% bootstrap_messages %}
+                {% endautoescape %}
+            </div>
+            <div id="content" class="mt-3 shadow">
+                {% block content %}
+                {% endblock content %}
             </div>
         </div>
-        <footer class="container">
-            {% include "partials/footer.html" %}
-        </footer>
-    </body>
+    </div>
+    <footer class="container">
+        {% include "partials/footer.html" %}
+    </footer>
+</body>
+
 </html>
