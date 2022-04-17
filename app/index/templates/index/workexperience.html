@@ -1,5 +1,9 @@
 <!-- templates/index/workexperience.html-->
-{% include "base.html" %}
+{% extends 'base.html' %}
+{% block title %}
+Work History
+{% endblock title %}
+{% block content %}
 <table class="table table-hover">
     <thead>
         <tr>
@@ -22,3 +26,4 @@
     </tbody>
     {% endfor %}
 </table>
+{% endblock content %}

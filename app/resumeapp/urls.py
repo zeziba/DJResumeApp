@@ -19,14 +19,15 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from upload.views import image_upload
-from index.views import HomePageView, AboutPageView, WorkHistoryView, SkillView, FactsFiveWsView
+from upload.views import ImagesView, ImageUploadView
+from index.views import HomePageView, AboutPageView, WorkHistoryView, SkillView, FactsFiveWsView, TermsOfServiceView, PrivacyView
 from contact.views import ContactUsView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name="home"),
     path('about/', AboutPageView.as_view(), name="about"),
-    path("image/", image_upload, name="upload"),
+    path("image/", ImageUploadView.as_view(), name="upload"),
+    path("images/", ImagesView.as_view(), name="images_display"),
     path("admin/", admin.site.urls, name="admin"),
     path("work_experience/", WorkHistoryView.as_view(), name="work_experience"),
     path("work_experience/", dj_include("index.urls"), name="work_experience"),
@@ -34,6 +35,8 @@ urlpatterns = [
     path("skills/", dj_include("index.urls"), name="skills"),
     path("facts_5_ws/", FactsFiveWsView.as_view(), name="facts_5_ws"),
     path("contact_us/", ContactUsView.as_view(), name="contact_us"),
+    path("terms_of_service/", TermsOfServiceView.as_view(), name="terms_of_service"),
+    path("privacy/", PrivacyView.as_view(), name="privacy"),
 ]
 
 if bool(settings.DEBUG):

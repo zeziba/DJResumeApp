@@ -21,7 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY", 'django-insecure-2&u-8+t!yd_-b%9l$#y)gj9+hm_xsgo8p1kd7#03d*3hws3d@d')
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY", 'django-insecure-2&u-8+t!yd_-b%9l$#y)gj9+hm_xsgo8p1kd7#03d*3hws3d@d')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", default=0))
@@ -186,7 +187,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Email backend
-EMAIL_BACKEND = os.environ.get("EMAIL_BACKEND", 'django.core.mail.backends.console.EmailBackend')
+EMAIL_BACKEND = os.environ.get(
+    "EMAIL_BACKEND", 'django.core.mail.backends.console.EmailBackend')
 EMAIL_HOST = os.environ.get("EMAIL_HOST")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
@@ -209,6 +211,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+# Media files
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "mediafiles"
+
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -219,11 +225,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Bootstrap
 STATICFILES_DIRS = [
     (os.path.join('icons'), os.path.join(BASE_DIR, 'assets', 'icons-1.8.1', 'icons')),
+    (os.path.join('js'), os.path.join(BASE_DIR, 'static', 'js')),
 ]
-
-# Media files
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "mediafiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

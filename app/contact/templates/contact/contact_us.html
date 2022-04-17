@@ -1,14 +1,20 @@
 <!-- templates/contact/contact_us.html -->
 {% extends 'base.html' %}
+{% block title %}
+Contact Page
+{% endblock title %}
 {% block content %}
+{% load crispy_forms_tags %}
 {% block form %}
 <div class="container p-5">
     <h1>Contacts</h1>
-    <h4>If there are any quetions feel free to contact us below</h4>
-    <p>Please write your name, email adress and message below if there are any questions.</p>
+    <h4>If there are any questions feel free to contact us below</h4>
+    <p>
+        Please write your name, email adress and message below if there are any questions.
+    </p>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
