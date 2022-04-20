@@ -36,6 +36,15 @@ class WorkExperience(models.Model):
         return f"{self.company_name}"
 
 
+class Education(models.Model):
+    person = models.ForeignKey(to=PersonalInfo, on_delete=models.CASCADE)
+    school_name = models.CharField(max_length=120)
+    end_date = models.DateField(verbose_name="Graduation Date")
+
+    def __str__(self) -> str:
+        return f"{self.person.last_name}|{self.school_name}"
+
+
 class Skills(models.Model):
     personal = models.ForeignKey(to=PersonalInfo, on_delete=models.CASCADE)
     skill_name = models.CharField(max_length=40)
