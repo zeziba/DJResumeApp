@@ -40,9 +40,11 @@ class Education(models.Model):
     person = models.ForeignKey(to=PersonalInfo, on_delete=models.CASCADE)
     school_name = models.CharField(max_length=120)
     end_date = models.DateField(verbose_name="Graduation Date")
+    school_code = models.CharField(
+        max_length=6, verbose_name="School's abbreviation")
 
     def __str__(self) -> str:
-        return f"{self.person.last_name}|{self.school_name}"
+        return f"{self.person.last_name}|{self.school_code}"
 
 
 class Skills(models.Model):
