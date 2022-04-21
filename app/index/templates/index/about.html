@@ -1,21 +1,34 @@
 <!-- templates/index/about.html -->
 {% extends 'about.html' %}
 {% block content %}
-<div class="container mx-auto">
-    <p class="lead">
-        {{ five_ws.identity }}
-    </p>
-    <p class="lead">
-        I have been going as of {{ five_ws.started|date:"Y-m-d" }}
-    </p>
-    <p class="lead">
-        I work and live in {{ five_ws.location }}
-    </p>
-    <p class="lead">
-        {{ five_ws.purpose }}
-    </p>
-    <p class="lead">
-        {{ five_ws.how_its_done }}
-    </p>
+
+<div class="container">
+    <div class="container mx-auto">
+        <p class="lead">
+            {{ five_ws.identity }}
+        </p>
+        <p class="lead">
+            I have been going as of {{ five_ws.started|date:"Y-m-d" }}
+        </p>
+        <p class="lead">
+            I work and live in {{ five_ws.location }}
+        </p>
+        <p class="lead">
+            {{ five_ws.purpose }}
+        </p>
+        <p class="lead">
+            {{ five_ws.how_its_done }}
+        </p>
+    </div>
+    <div class="container">
+        <h4 class="text-center">Factoids</h4>
+        <div class="d-flex">
+            <ul class="list-group list-group-flush list-inline mx-auto justify-content-center">
+                {% for fact in facts_5_ws %}
+                <li class="list-group-item text-center">{{ fact.factoid }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </div>
 {% endblock content %}
