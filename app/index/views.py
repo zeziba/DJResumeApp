@@ -33,6 +33,10 @@ class AboutPageView(TemplateView):
             context['five_ws'] = FiveWs.objects.get(id=1)
         except FiveWs.DoesNotExist:
             context['personal_info'] = FiveWs()
+        try:
+            context['facts_5_ws'] = FactsForFiveWs.objects.all()
+        except FiveWs.DoesNotExist:
+            context['facts_5_ws'] = FactsForFiveWs()
 
         return context
 
@@ -65,17 +69,6 @@ class SkillView(TemplateView):
     def get_context_data(self, *args, **kwargs: Any):
         context = super(SkillView, self).get_context_data(*args, **kwargs)
         context['skills'] = Skills.objects.all()
-
-        return context
-
-
-class FactsFiveWsView(TemplateView):
-    template_name = 'index/skills.html'
-
-    def get_context_data(self, *args, **kwargs: Any):
-        context = super(FactsFiveWsView, self).get_context_data(
-            *args, **kwargs)
-        context['facts_5_ws'] = FactsForFiveWs.objects.all()
 
         return context
 
