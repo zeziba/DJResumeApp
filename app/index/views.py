@@ -2,8 +2,8 @@ from typing import Any
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.db import ProgrammingError, models
-from index.models import WorkExperience, Skills, PersonalInfo, FiveWs, FactsForFiveWs
+from django.db import ProgrammingError
+from index.models import WorkExperience, Skills, PersonalInfo, FiveWs, FactsForFiveWs, SocialMedia, Education
 
 
 class HomePageView(TemplateView):
@@ -12,9 +12,14 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs: Any):
         context = super(HomePageView, self).get_context_data(**kwargs)
         try:
+            # The following get the first entry in th personal info database, which limits the app to one resume
             context['personal_info'] = PersonalInfo.objects.get(id=1)
         except PersonalInfo.DoesNotExist or ProgrammingError:
             context['personal_info'] = PersonalInfo()
+        try:
+            context['social_media'] = SocialMedia.objects.all()
+        except SocialMedia.DoesNotExist or ProgrammingError:
+            context['social_media'] = SocialMedia()
 
         return context
 
@@ -43,6 +48,17 @@ class WorkHistoryView(TemplateView):
         return context
 
 
+class EducationView(TemplateView):
+    template_name = 'index/education.html'
+
+    def get_context_data(self, *args, **kwargs: Any):
+        context = super(EducationView, self).get_context_data(
+            *args, **kwargs)
+        context['education'] = Education.objects.all()
+
+        return context
+
+
 class SkillView(TemplateView):
     template_name = 'index/skills.html'
 
@@ -66,6 +82,8 @@ class FactsFiveWsView(TemplateView):
 
 class TermsOfServiceView(TemplateView):
     template_name = 'index/tos.html'
+
+
 class PrivacyView(TemplateView):
     template_name = 'index/privacy.html'
 

@@ -10,25 +10,11 @@ from .models import Images
 
 
 # @staff_member_required
-# def image_upload(request):
-#     if request.method == "POST" and request.FILES["image_file"]:
-#         image_file = request.FILES["image_file"]
-#         fs = FileSystemStorage()
-#         filename = fs.save(image_file.name, image_file)
-#         image_url = fs.url(filename)
-#         print(image_url)
-#         SubmitImage.objects.create(image=image_file)
-#         return render(request, "upload/partials/upload.html", {
-#             "image_url": image_url
-#         })
-#     return render(request, "upload/partials/upload.html")
-
-
 class ImageUploadView(SuccessMessageMixin, FormView):
     template_name = "upload/partials/upload.html"
     form_class = ImagesForm
     success_message = "Image Submited."
-    success_url = "/"
+    success_url = "../images/"
 
     def get_form(self, form_class: Optional[Type[ImagesForm]] = ImagesForm) -> ImagesForm:
         return super(ImageUploadView, self).get_form(form_class)
@@ -39,6 +25,7 @@ class ImageUploadView(SuccessMessageMixin, FormView):
         return super(ImageUploadView, self).form_valid(form)
 
 
+# @staff_member_required
 class ImagesView(TemplateView):
     template_name = "upload/images_display.html"
 

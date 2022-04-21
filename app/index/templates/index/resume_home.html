@@ -2,17 +2,20 @@
 {% extends "home.html" %}
 {% block content %}
 <div class="container mx-auto">
-    <p class="display-5  lead">
+    <img src="{{ personal_info.self_photo.url }}" class="img-fluid rounded mx-auto d-block" />
+    <p class="display-5  lead text-center">
         {{ personal_info.first_name|title }} {{ personal_info.middle_name|title }} {{ personal_info.last_name|title }}
     </p>
-    <p class="lead">
+    <p class="lead text-center">
         Contact: {{ personal_info.contact_email }}; {{ personal_info.contact_phone }}
     </p>
-    {% if personal_info.self_photo %}
-    <p class="lead">
-        <a href="{{ personal_info.self_photo }}" class="btn btn-outline-dark" role="button">Linkedin:
-            {{ personal_info.self_photo|slice:"7:" }}</a>
-    </p>
+    {% if social_media %}
+    <div class="container">
+        <p class="text">Social Media:</p>
+        {% for media in social_media %}
+        <p class="text">{{ media }}</p>
+        {% endfor %}
+    </div>
     {% endif %}
 </div>
 {% endblock content %}
