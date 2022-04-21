@@ -22,8 +22,13 @@ This django app focus on making a clean and intuitive resume app that can suppor
 
 # After production build run the following commands to ensure all files and databases are setup
 `docker-compose exec web python3 manage.py flush --no-input`
+
 `docker-compose exec web python3 manage.py makemigrations`
+
 `docker-compose exec web python3 manage.py migrate`
+
 `docker-compose exec web python3 manage.py createsuperuser`
+
 `docker-compose exec web python3 manage.py collectstatic --no-input --clear`
+
 `docker-compose exec web python3 manage.py migrate --run-syncdb`
