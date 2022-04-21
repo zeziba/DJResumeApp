@@ -10,11 +10,13 @@
         Contact: {{ personal_info.contact_email }}; {{ personal_info.contact_phone }}
     </p>
     {% if social_media %}
-    <div class="container">
-        <p class="text">Social Media:</p>
-        {% for media in social_media %}
-        <p class="text">{{ media }}</p>
-        {% endfor %}
+    <p class="text text-center">Social Media:</p>
+    <div class="d-flex">
+        <ul class="list-group list-group-horizontal list-group-flush list-inline mx-auto justify-content-center">
+            {% for media in social_media %}
+            <li class="list-group-item">{{ media }}</li>
+            {% endfor %}
+        </ul>
     </div>
     {% endif %}
 </div>
