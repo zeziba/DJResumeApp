@@ -3,7 +3,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.db import ProgrammingError
-from index.models import WorkExperience, Skills, PersonalInfo, FiveWs, FactsForFiveWs, SocialMedia
+from index.models import WorkExperience, Skills, PersonalInfo, FiveWs, FactsForFiveWs, SocialMedia, Education
 
 
 class HomePageView(TemplateView):
@@ -44,6 +44,17 @@ class WorkHistoryView(TemplateView):
         context = super(WorkHistoryView, self).get_context_data(
             *args, **kwargs)
         context['work_experience'] = WorkExperience.objects.all()
+
+        return context
+
+
+class EducationView(TemplateView):
+    template_name = 'index/education.html'
+
+    def get_context_data(self, *args, **kwargs: Any):
+        context = super(EducationView, self).get_context_data(
+            *args, **kwargs)
+        context['education'] = Education.objects.all()
 
         return context
 

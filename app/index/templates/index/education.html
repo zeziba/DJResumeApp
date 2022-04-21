@@ -1,0 +1,11 @@
+<!-- templates/index/education.html-->
+{% extends 'base.html' %}
+{% block title %}Education{% endblock title %}
+{% block content %}
+<div class="container">
+    {% for school_data in education %}
+    <p class="text">I went to {{ school_data.school_name }}</p>
+    <p class="text">Graduated or expect to finish {{ school_data.end_date }}</p>
+    {% endfor %}
+</div>
+{% endblock content %}
