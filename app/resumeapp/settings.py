@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap5',
+    'sass_processor',
     'crispy_forms',
     'crispy_bootstrap5',
     'upload',
@@ -218,6 +219,7 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
 ]
 
 STATIC_URL = 'static/'
@@ -226,7 +228,18 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     (os.path.join('icons'), os.path.join(BASE_DIR, 'assets', 'icons-1.8.1', 'icons')),
     (os.path.join('js'), os.path.join(BASE_DIR, 'static', 'js')),
+    (os.path.join('scss'), os.path.join(BASE_DIR, 'static', 'scss')),
+    (os.path.join('node_models'), os.path.join(BASE_DIR, 'static', 'node_models')),
 ]
+
+# Django Sass
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
+SASS_PROCESSOR_INCLUDE_DIRS = [
+    os.path.join(SASS_PROCESSOR_ROOT, 'scss'),
+]
+
+# SASS bugfix
+SASS_PRECISION = 8
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

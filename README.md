@@ -32,6 +32,8 @@ This django app focus on making a clean and intuitive resume app that can suppor
 
 `docker-compose exec web python3 manage.py createsuperuser`
 
+`docker-compose exec web python3 manage.py compilescss`
+
 `docker-compose exec web python3 manage.py collectstatic --no-input --clear`
 
 `docker-compose exec web python3 manage.py migrate --run-syncdb`

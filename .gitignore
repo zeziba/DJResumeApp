@@ -11,6 +11,9 @@
 migrations/
 !migrations/__init__.py
 
+# Ignore all generated css files
+**/scss/*.css*
+
 # Ignore prodfiles and static files from collectstatic
 app/staticfiles/
 app/mediafiles/

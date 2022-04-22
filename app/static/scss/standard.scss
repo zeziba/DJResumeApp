@@ -1,0 +1,9 @@
+@import 'standard_theme';
+
+body {
+    background-color: $primary-color;
+    p {
+        font: $font-stack;
+        color: $primary-font-color;
+    }
+}
