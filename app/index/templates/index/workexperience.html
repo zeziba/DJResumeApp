@@ -11,7 +11,7 @@ Work History
             <th scrope="col">Title</th>
             <th scope="col">Description</th>
             <th scope="col">Start Date</th>
-            <th scope="col">End Date</th>
+            <th scope="col">Time at Position</th>
         </tr>
     </thead>
     {% for work in work_experience %}
@@ -21,7 +21,7 @@ Work History
             <td>{{ work.title }}</td>
             <td>{{ work.description }}</td>
             <td>{{ work.start_date }}</td>
-            <td>{{ work.end_date }}</td>
+            <td>{{ work.start_date|timesince:work.end_date }}</td>
         </tr>
     </tbody>
     {% endfor %}

@@ -20,6 +20,10 @@ class PersonalInfo(models.Model):
     social_media = models.ManyToManyField(
         to=SocialMedia, verbose_name="Social Media SItes", blank=True)
 
+    class Meta:
+        verbose_name = 'Personal Information'
+        verbose_name_plural = verbose_name
+
     def __str__(self) -> str:
         return f"{self.first_name}|{self.last_name}"
 
@@ -32,6 +36,11 @@ class WorkExperience(models.Model):
     description = models.TextField(max_length=800)
     title = models.CharField(max_length=60)
 
+    class Meta:
+        verbose_name = 'Work Experience'
+        verbose_name_plural = verbose_name
+        ordering = ['-end_date']
+
     def __str__(self) -> str:
         return f"{self.company_name}"
 
@@ -43,6 +52,11 @@ class Education(models.Model):
     school_code = models.CharField(
         max_length=6, verbose_name="School's abbreviation")
 
+    class Meta:
+        verbose_name = 'Education'
+        verbose_name_plural = 'Education'
+        ordering = ['-end_date']
+
     def __str__(self) -> str:
         return f"{self.person.last_name}|{self.school_code}"
 
@@ -52,6 +66,11 @@ class Skills(models.Model):
     skill_name = models.CharField(max_length=40)
     description = models.TextField(max_length=120)
     example = models.URLField()
+
+    class Meta:
+        verbose_name = 'Skill'
+        verbose_name_plural = 'Skills'
+        ordering = ['-skill_name']
 
     def __str__(self) -> str:
         return f"{self.skill_name}"
@@ -72,6 +91,10 @@ class FiveWs(models.Model):
     how_its_done = models.TextField(
         max_length=400, verbose_name="I believe <>")
 
+    class Meta:
+        verbose_name = 'The Five W'
+        verbose_name_plural = 'The Five Ws'
+
     def __str__(self) -> str:
         return f"{self.personal.last_name}"
 
@@ -88,6 +111,11 @@ class FactsForFiveWs(models.Model):
     fact_score = models.IntegerField(
         choices=PriorityLevel.choices, verbose_name="Priority level of factoid")
     factoid = models.TextField(max_length=120, verbose_name="Factoid")
+
+    class Meta:
+        verbose_name = 'Factoid'
+        verbose_name_plural = 'Factoids'
+        ordering = ['fact_score']
 
     def __str__(self) -> str:
         return f"{self.five_ws.personal.last_name}"

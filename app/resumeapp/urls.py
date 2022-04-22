@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from upload.views import ImagesView, ImageUploadView
-from index.views import HomePageView, AboutPageView, WorkHistoryView, SkillView, FactsFiveWsView, TermsOfServiceView, PrivacyView, EducationView
+from index.views import HomePageView, AboutPageView, WorkHistoryView, SkillView, TermsOfServiceView, PrivacyView, EducationView
 from contact.views import ContactUsView
 
 urlpatterns = [
@@ -34,7 +34,6 @@ urlpatterns = [
     path("work_experience/", dj_include("index.urls"), name="work_experience"),
     path("skills/", SkillView.as_view(), name="skills"),
     path("skills/", dj_include("index.urls"), name="skills"),
-    path("facts_5_ws/", FactsFiveWsView.as_view(), name="facts_5_ws"),
     path("contact_us/", ContactUsView.as_view(), name="contact_us"),
     path("terms_of_service/", TermsOfServiceView.as_view(), name="terms_of_service"),
     path("privacy/", PrivacyView.as_view(), name="privacy"),
