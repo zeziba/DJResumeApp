@@ -104,7 +104,7 @@ class FactsForFiveWs(models.Model):
     class PriorityLevel(models.IntegerChoices):
         LOW = 0
         MED = 1
-        High = 2
+        HIGH = 2
 
     five_ws = models.ForeignKey(
         to=FiveWs, on_delete=models.CASCADE, verbose_name="Five 'w's")
