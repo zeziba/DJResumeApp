@@ -239,6 +239,7 @@ STATICFILES_DIRS = [
     (os.path.join('node_modules'), os.path.join(
         BASE_DIR, 'static', 'node_modules')),
     (os.path.join('favicon'), os.path.join(BASE_DIR, 'static', 'favicon')),
+    (os.path.join('images'), os.path.join(BASE_DIR, 'static', 'images')),
 ]
 
 # Django Sass

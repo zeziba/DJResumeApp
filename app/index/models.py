@@ -5,6 +5,10 @@ class SocialMedia(models.Model):
     user_name = models.CharField(max_length=60)
     site = models.CharField(max_length=120)
 
+    class Meta:
+        verbose_name = 'Social Media'
+        verbose_name_plural = verbose_name
+
     def __str__(self) -> str:
         return f"{self.user_name}@{self.site}"
 
@@ -59,6 +63,19 @@ class Education(models.Model):
 
     def __str__(self) -> str:
         return f"{self.person.last_name}|{self.school_code}"
+
+
+class Projects(models.Model):
+    project_owner = models.ForeignKey(
+        to=Education, verbose_name="Project", on_delete=models.CASCADE)
+    name = models.CharField(max_length=60)
+    link = models. URLField(max_length=240)
+    date = models.DateField(verbose_name="Date Project Ended", name="Date")
+    imamge = models.ImageField(verbose_name="Project Image", name="Image")
+
+    class Meta:
+        verbose_name = 'Project'
+        verbose_name_plural = 'Projects'
 
 
 class Skills(models.Model):
