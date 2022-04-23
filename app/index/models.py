@@ -1,3 +1,4 @@
+from typing import List
 from django.db import models
 
 
@@ -20,7 +21,7 @@ class PersonalInfo(models.Model):
     contact_email = models.EmailField()
     contact_phone = models.CharField(max_length=16)
     self_photo = models.ImageField(
-        verbose_name="Personal Picture", upload_to=f"{last_name}/", blank=True)
+        verbose_name="Personal Picture", upload_to=f"personal_img/", blank=True)
     social_media = models.ManyToManyField(
         to=SocialMedia, verbose_name="Social Media SItes", blank=True)
 
@@ -67,15 +68,19 @@ class Education(models.Model):
 
 class Projects(models.Model):
     project_owner = models.ForeignKey(
-        to=Education, verbose_name="Project", on_delete=models.CASCADE)
+        to=Education, verbose_name="Owner", on_delete=models.CASCADE)
     name = models.CharField(max_length=60)
     link = models. URLField(max_length=240)
     date = models.DateField(verbose_name="Date Project Ended", name="Date")
-    imamge = models.ImageField(verbose_name="Project Image", name="Image")
+    image = models.ImageField(
+        verbose_name="Project Image", name="image", upload_to=f"education_projects/")
 
     class Meta:
         verbose_name = 'Project'
         verbose_name_plural = 'Projects'
+
+    def __str__(self) -> str:
+        return f"{self.name}"
 
 
 class Skills(models.Model):
