@@ -1,6 +1,7 @@
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap-compass";
 @import 'standard_theme';
 
 
@@ -17,9 +18,50 @@ $theme-colors: (
 
 
 body {
+  background-color: $dark;
     p {
         font: $font-stack;
     }
+}
+
+#navbar {
+  background-color: $primary;
+  width: 100%;
+  transition: top 0.5s;
+  overflow: hidden;
+
+  a {
+    float: left;
+    display: block;
+    color: $secondary;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+  }
+
+  a:hover {
+    background-color: $light;
+    color: $dark;
+  }
+}
+
+.sticky {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+#header {
+  display: block;
+  background-image: url('/static/images/program-ga8ea3af4a_1920.jpg');
+  background-size: auto auto;
+  background-repeat: no-repeat;
+  height: 500px;
+  width: 100%;
 }
 
 $starorange: #df711b;

@@ -78,6 +78,10 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATE_CONTEXT_PROCESSORS = [
+    "django.core.context_processors.request",
+]
+
 WSGI_APPLICATION = 'resumeapp.wsgi.application'
 
 
@@ -238,7 +242,10 @@ STATICFILES_DIRS = [
 ]
 
 # Django Sass
-SASS_PROCESSOR_ROOT = STATIC_ROOT
+if DEBUG:
+    SASS_PROCESSOR_ROOT = '/'
+else:
+    SASS_PROCESSOR_ROOT = STATIC_ROOT
 SASS_PROCESSOR_INCLUDE_DIRS = [
     os.path.join(SASS_PROCESSOR_ROOT, 'scss'),
 ]

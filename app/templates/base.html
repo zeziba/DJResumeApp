@@ -29,11 +29,9 @@
 </head>
 
 <body>
-    <header class="shadow">
-        {% include "partials/navbar.html" %}
-    </header>
+    {% include "partials/header.html" %}
+    {% include "partials/navbar.html" %}
     <div class="container vh-100 shadow">
-        <div id="header">{% include "partials/header.html" %}</div>
         <div id="body">
             <div id="django_messages">
                 {% autoescape off %}
