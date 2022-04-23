@@ -1,17 +1,22 @@
-<nav id="navbar-top" class="navbar navbar-expand-lg navbar-dark bg-dark">
+{% load extra_tags %}
+<nav id="navbar" class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+        <a class="navbar-brand {% active request "home" %}" href="{% url 'home' %}">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault"
             aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarDefault">
             <ul class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="{% url 'about' %}">About</a>
-                <a class="nav-link" aria-current="page" href="{% url 'education' %}">Education</a>
-                <a class="nav-link" aria-current="page" href="{% url 'work_experience' %}">Work Experience</a>
-                <a class="nav-link" aria-current="page" href="{% url 'skills' %}">Skills</a>
-                <a class="nav-link" aria-current="page" href="{% url 'contact_us' %}">Contact Us</a>
+                <a class="nav-link {% active request "about" %}" aria-current="page" href="{% url 'about' %}">About</a>
+                <a class="nav-link {% active request "education" %}" aria-current="page"
+                    href="{% url 'education' %}">Education</a>
+                <a class="nav-link {% active request "work_experience" %}" aria-current="page"
+                    href="{% url 'work_experience' %}">Work Experience</a>
+                <a class="nav-link {% active request "skills" %}" aria-current="page"
+                    href="{% url 'skills' %}">Skills</a>
+                <a class="nav-link {% active request "contact_us" %}" aria-current="page"
+                    href="{% url 'contact_us' %}">Contact Us</a>
             </ul>
             <ul class="navbar-nav ms-auto">
                 <!--- Add link to admin part of site -->

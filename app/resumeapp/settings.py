@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap5',
+    'sass_processor',
+    "compressor",
     'crispy_forms',
     'crispy_bootstrap5',
     'upload',
@@ -74,6 +76,10 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+TEMPLATE_CONTEXT_PROCESSORS = [
+    "django.core.context_processors.request",
 ]
 
 WSGI_APPLICATION = 'resumeapp.wsgi.application'
@@ -218,15 +224,42 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+    'compressor.finders.CompressorFinder',
 ]
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 # Bootstrap
 STATICFILES_DIRS = [
     (os.path.join('icons'), os.path.join(BASE_DIR, 'assets', 'icons-1.8.1', 'icons')),
     (os.path.join('js'), os.path.join(BASE_DIR, 'static', 'js')),
+    (os.path.join('scss'), os.path.join(BASE_DIR, 'static', 'scss')),
+    (os.path.join('node_modules'), os.path.join(
+        BASE_DIR, 'static', 'node_modules')),
+    (os.path.join('favicon'), os.path.join(BASE_DIR, 'static', 'favicon')),
+    (os.path.join('images'), os.path.join(BASE_DIR, 'static', 'images')),
 ]
+
+# Django Sass
+if DEBUG:
+    SASS_PROCESSOR_ROOT = '/'
+else:
+    SASS_PROCESSOR_ROOT = STATIC_ROOT
+SASS_PROCESSOR_INCLUDE_DIRS = [
+    os.path.join(SASS_PROCESSOR_ROOT, 'scss'),
+]
+
+# SASS bugfix
+SASS_PRECISION = 8
+SASS_OUTPUT_STYLE = 'compact'
+
+# Compress
+COMPRESS_ROOT = BASE_DIR / 'staticfiles'
+
+# Node model URL
+NODE_MODULES_URL = STATIC_URL + 'node_modules/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

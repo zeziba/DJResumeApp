@@ -10,21 +10,28 @@
     {# Load CSS and JavaScript #}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+    {% load sass_tags %}
     {% load static %}
     <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
+    <link href="{% sass_src 'scss/standard.scss' %}" rel="stylesheet" type="text/css" />
     <title>
         {% block title %}
         Default Value
         {% endblock title %}
     </title>
+    {% block favicon %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}" />
+    <link rel="icon" type="image/x-icon" href={% static 'favicon/favicon.ico' %} />
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}" />
+    {% endblock favicon %}
 </head>
 
 <body>
-    <header class="shadow">
-        {% include "partials/navbar.html" %}
-    </header>
-    <div class="container">
-        <div id="header">{% include "partials/header.html" %}</div>
+    {% include "partials/header.html" %}
+    {% include "partials/navbar.html" %}
+    <div class="main-body container shadow">
         <div id="body">
             <div id="django_messages">
                 {% autoescape off %}
@@ -38,7 +45,7 @@
             </div>
         </div>
     </div>
-    <footer class="container">
+    <footer class="container shadow">
         {% include "partials/footer.html" %}
     </footer>
 </body>

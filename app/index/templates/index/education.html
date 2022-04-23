@@ -2,10 +2,22 @@
 {% extends 'base.html' %}
 {% block title %}Education{% endblock title %}
 {% block content %}
+{% load static %}
 <div class="container">
     {% for school_data in education %}
     <p class="text">I went to {{ school_data.school_name }}</p>
     <p class="text">Graduated or expect to finish {{ school_data.end_date }}</p>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for project in school_data.projects_set.all %}
+        <div id="project-card" class="Card">
+            <img class="card-img-top" scr="{{ project.image.url }}" alt="{{ project.name }} image" />
+            <div class="card-body">
+                <h4 class="card-title">{{ project.name }}</h4>
+                <a href="{{ project.link }}" class="card-text">{{ project.name }} {{ project.image.url }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
     {% endfor %}
 </div>
 {% endblock content %}

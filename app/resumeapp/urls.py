@@ -18,12 +18,16 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic.base import RedirectView
+from django.contrib.staticfiles.storage import staticfiles_storage
 
 from upload.views import ImagesView, ImageUploadView
 from index.views import HomePageView, AboutPageView, WorkHistoryView, SkillView, TermsOfServiceView, PrivacyView, EducationView
 from contact.views import ContactUsView
 
 urlpatterns = [
+    path('favicon.ico', RedirectView.as_view(
+        url=staticfiles_storage.url('favicon/favicon.ico'))),
     path('', HomePageView.as_view(), name="home"),
     path('about/', AboutPageView.as_view(), name="about"),
     path("image/", ImageUploadView.as_view(), name="upload"),

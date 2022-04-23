@@ -2,6 +2,9 @@
 This django app focus on making a clean and intuitive resume app that can support multiple resumes at the same time.
 
 
+# Install Node models for bootstrap
+`npm install --prefix ./app/static bootstrap-sass bootstrap`
+
 # Check on database(Sql)
 `docker-compose exec db psql --username=resume_admin_prod --dbname=resumeapp_prod`
 
@@ -32,6 +35,14 @@ This django app focus on making a clean and intuitive resume app that can suppor
 
 `docker-compose exec web python3 manage.py createsuperuser`
 
+### Use if default sass run
+`docker-compose exec web python3 manage.py compilescss`
+
+### Use only the complied css needs to be moved to the static folder
+`docker-compose exec web python3 manage.py compilescss --use-storage`
+
 `docker-compose exec web python3 manage.py collectstatic --no-input --clear`
 
+
+#### Run if the database is having issues
 `docker-compose exec web python3 manage.py migrate --run-syncdb`
