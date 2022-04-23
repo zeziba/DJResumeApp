@@ -19,13 +19,20 @@
         Default Value
         {% endblock title %}
     </title>
+    {% block favicon %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}" />
+    <link rel="icon" type="image/x-icon" href={% static 'favicon/favicon.ico' %} />
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}" />
+    {% endblock favicon %}
 </head>
 
 <body>
     <header class="shadow">
         {% include "partials/navbar.html" %}
     </header>
-    <div class="container">
+    <div class="container vh-100">
         <div id="header">{% include "partials/header.html" %}</div>
         <div id="body">
             <div id="django_messages">
