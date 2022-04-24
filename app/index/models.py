@@ -70,6 +70,7 @@ class Projects(models.Model):
     project_owner = models.ForeignKey(
         to=Education, verbose_name="Owner", on_delete=models.CASCADE)
     name = models.CharField(max_length=60)
+    description = models.TextField(max_length=600, blank=True)
     link = models. URLField(max_length=240)
     date = models.DateField(verbose_name="Date Project Ended", name="Date")
     image = models.ImageField(
