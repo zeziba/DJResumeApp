@@ -1,5 +1,6 @@
 from typing import List
 from django.db import models
+from datetime import date
 
 
 class SocialMedia(models.Model):
@@ -61,6 +62,10 @@ class Education(models.Model):
         verbose_name = 'Education'
         verbose_name_plural = 'Education'
         ordering = ['-end_date']
+
+    @property
+    def has_graduated(self) -> bool:
+        return date.today() > self.end_date
 
     def __str__(self) -> str:
         return f"{self.person.last_name}|{self.school_code}"
