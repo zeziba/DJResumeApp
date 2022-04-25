@@ -22,16 +22,6 @@ If the static folder does not exist create it
 #### Install Node models for bootstrap
 `npm install --prefix ./app/static bootstrap-sass bootstrap`
 
-# Check on database(Sql)
-`docker-compose exec db psql --username=resume_admin_prod --dbname=resumeapp_prod`
-
-# Entry for query of database
-`resume_dev# \l`
-
-`resume_dev# \dt`
-
-`resume_dev# \c resume_dev`
-
 # Inspect the database
 `docker volume ls # Pick correct volume`
 
@@ -63,3 +53,14 @@ If the static folder does not exist create it
 
 #### Run if the database is having issues
 `docker-compose exec web python3 manage.py migrate --run-syncdb`
+
+# Database commands
+### Check on database(Sql)
+`docker-compose exec db psql --username=resume_admin_prod --dbname=resumeapp_prod`
+
+### Entry for query of database
+`resume_dev# \l`
+
+`resume_dev# \dt`
+
+`resume_dev# \c resume_dev`
