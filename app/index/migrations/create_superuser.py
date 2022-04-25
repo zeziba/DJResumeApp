@@ -4,10 +4,6 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('index', '0001_initial'),
-    ]
-
     def generate_super(apps, schema_editor):
         from django.contrib.auth.models import User
 
