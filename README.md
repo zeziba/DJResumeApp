@@ -27,9 +27,6 @@ If the static folder does not exist create it
 
 `docker volume inspect djresumeapp_postgres_data`
 
-# Copy static files to the proper locations
-`docker-compose -f docker-compose.prod.yml exec web python3 manage.py collectstatic --no-input --clear`
-
 # Run the tests
 `docker-compose exec web python3 manage.py test`
 
@@ -53,6 +50,15 @@ If the static folder does not exist create it
 
 #### Run if the database is having issues
 `docker-compose exec web python3 manage.py migrate --run-syncdb`
+
+# Run these commands for the production
+`docker-compose -f docker-compose.prod.yml exec web python3 manage.py makemigrations`
+
+`docker-compose -f docker-compose.prod.yml exec web python3 manage.py migrate`
+
+`docker-compose -f docker-compose.prod.yml exec web python3 manage.py compilescss`
+
+`docker-compose -f docker-compose.prod.yml exec web python3 manage.py collectstatic --no-input --clear`
 
 # Database commands
 ### Check on database(Sql)
