@@ -4,20 +4,36 @@
 {% block content %}
 <div class="container">
     {% for school_data in education %}
-    <p class="text">I went to {{ school_data.school_name }}</p>
-    <p class="text">Graduated or expect to finish {{ school_data.end_date }}</p>
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-        {% for project in school_data.projects_set.all %}
-        <div id="project-card" class="Card">
-            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.name }} image" />
-            <div class="card-body">
-                <h4 class="card-title">{{ project.name }}</h4>
-                <p class="card-text">Project Link: <a href="{{ project.link }}" class="card-text">{{ project.name }}</a>
-                </p>
+    <h2 class="text">I went to {{ school_data.school_name }}</h2>
+    <h3 class="text">{% if school_data.has_graduated %}Graduated {% else %}Expected Graduation
+        {% endif %}{{ school_data.end_date }}</h3>
+    {% load extra_tags %}
+    {% for project in school_data.projects_set.all %}
+    <div class="project-card card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ project.image.url }}" class="rounded img-fluid" alt="{{ project.name }} image" />
+                <p class="card-footer text-muted">Project Link: <a href="{{ project.link }}"
+                        class="btn btn-primary">{{ project.name }}</a></p>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.name }}</h5>
+                    <p>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse-id-{% make_hash forloop.counter project.name %}"
+                            aria-expanded="false" aria-controls="collapseExample">Project Description</button>
+                    </p>
+                    <div id="collapse-id-{% make_hash forloop.counter project.name %}" class="collapse">
+                        <div class="card card-body">
+                            <p class="card-text">{{ project.description }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
     {% endfor %}
 </div>
 {% endblock content %}

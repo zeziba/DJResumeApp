@@ -1,7 +1,7 @@
 from django.db import models
 
 MAX_CHAR_LENGTH = 15
-UPLOAD_LOCATION = f'uploads/'
+UPLOAD_LOCATION = 'uploads/'
 
 
 class Images(models.Model):

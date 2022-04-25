@@ -5,8 +5,7 @@
 @import 'standard_theme';
 
 
-$theme-colors: (
-  primary: $primary,
+$theme-colors: (primary: $primary,
   secondary: $secondary,
   success: $success,
   info: $info,
@@ -19,9 +18,10 @@ $theme-colors: (
 
 body {
   background-color: $dark;
-    p {
-        font: $font-stack;
-    }
+
+  p {
+    font: $font-stack;
+  }
 }
 
 #navbar {
@@ -57,7 +57,7 @@ body {
   width: 100%;
 }
 
-.sticky + .content {
+.sticky+.content {
   padding-top: 60px;
 }
 
@@ -68,10 +68,31 @@ body {
   background-repeat: no-repeat;
   height: 500px;
   width: 100%;
+  overflow: auto;
+  background-color: $dark;
 }
 
-#project-card {
-  width: 400px;
+.project-card {
+  min-height: 250px;
+  justify-self: center;
+
+  &.card {
+    &.mb-3 {
+      max-width: 100%;
+    }
+  }
+
+  img {
+    min-width: 80px;
+    max-width: auto;
+    align-items: center;
+  }
+
+  .card-body {
+    p {
+      font-size: medium;
+    }
+  }
 }
 
 .main-body {
@@ -80,9 +101,7 @@ body {
 
 $starorange: #df711b;
 
-$custom-theme-colors: (
-  "starorange": $starorange
-);
+$custom-theme-colors: ("starorange": $starorange);
 
 $theme-colors: map-merge($theme-colors, $custom-theme-colors);
 $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");

@@ -1,5 +1,6 @@
 from typing import List
 from django.db import models
+from datetime import date
 
 
 class SocialMedia(models.Model):
@@ -21,7 +22,7 @@ class PersonalInfo(models.Model):
     contact_email = models.EmailField()
     contact_phone = models.CharField(max_length=16)
     self_photo = models.ImageField(
-        verbose_name="Personal Picture", upload_to=f"personal_img/", blank=True)
+        verbose_name="Personal Picture", upload_to="personal_img/", blank=True)
     social_media = models.ManyToManyField(
         to=SocialMedia, verbose_name="Social Media SItes", blank=True)
 
@@ -62,6 +63,10 @@ class Education(models.Model):
         verbose_name_plural = 'Education'
         ordering = ['-end_date']
 
+    @property
+    def has_graduated(self) -> bool:
+        return date.today() > self.end_date
+
     def __str__(self) -> str:
         return f"{self.person.last_name}|{self.school_code}"
 
@@ -70,10 +75,11 @@ class Projects(models.Model):
     project_owner = models.ForeignKey(
         to=Education, verbose_name="Owner", on_delete=models.CASCADE)
     name = models.CharField(max_length=60)
+    description = models.TextField(max_length=600, blank=True)
     link = models. URLField(max_length=240)
     date = models.DateField(verbose_name="Date Project Ended", name="Date")
     image = models.ImageField(
-        verbose_name="Project Image", name="image", upload_to=f"education_projects/")
+        verbose_name="Project Image", name="image", upload_to="education_projects/")
 
     class Meta:
         verbose_name = 'Project'
