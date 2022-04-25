@@ -23,6 +23,9 @@ node_modules/
 app/staticfiles/
 app/mediafiles/
 
+# Ensure all Examples files are able to be pushed
+!Examples/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
