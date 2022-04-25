@@ -233,21 +233,21 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Bootstrap
 STATICFILES_DIRS = [
-    (os.path.join('js'), os.path.join(BASE_DIR, 'static', 'js')),
-    (os.path.join('scss'), os.path.join(BASE_DIR, 'static', 'scss')),
-    (os.path.join('node_modules'), os.path.join(
-        BASE_DIR, 'static', 'node_modules')),
-    (os.path.join('favicon'), os.path.join(BASE_DIR, 'static', 'favicon')),
-    (os.path.join('images'), os.path.join(BASE_DIR, 'static', 'images')),
+    (os.path.join('js'), os.path.join(STATIC_URL, 'js')),
+    (os.path.join('scss'), os.path.join(STATIC_URL, 'scss')),
+    (os.path.join('node_modules'), os.path.join(STATIC_URL, 'node_modules')),
+    (os.path.join('favicon'), os.path.join(STATIC_URL, 'favicon')),
+    (os.path.join('images'), os.path.join(STATIC_URL, 'images')),
 ]
 
 # Django Sass
 if DEBUG:
-    SASS_PROCESSOR_ROOT = '/'
+    SASS_PROCESSOR_ROOT = STATIC_URL
 else:
     SASS_PROCESSOR_ROOT = STATIC_ROOT
 SASS_PROCESSOR_INCLUDE_DIRS = [
     os.path.join(SASS_PROCESSOR_ROOT, 'scss'),
+    os.path.join(SASS_PROCESSOR_ROOT, 'node_modules'),
 ]
 
 # SASS bugfix
